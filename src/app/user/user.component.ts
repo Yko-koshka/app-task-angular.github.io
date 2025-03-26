@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DUMMY_USERS } from '../dummy-users';
 
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+type User = {
+  id: string;
+  name: string;
+  avatar: string;
+};
 
 @Component({
   selector: 'app-user',
@@ -10,11 +13,7 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  @Input({ required: true }) user!: {
-    id: string;
-    name: string;
-    avatar: string;
-  };
+  @Input({ required: true }) user!: User;
   @Output() select = new EventEmitter<string>();
 
   get imagePath() {
