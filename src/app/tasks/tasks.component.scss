@@ -3,7 +3,7 @@
   border-radius: 8px;
   max-height: 60vh;
   overflow: auto;
-  background-color: #f7f4ef;
+  background-color: #edbb54;
   header {
     display: flex;
     justify-content: space-between;
@@ -13,7 +13,6 @@
     h2 {
       margin: 0;
       font-size: 0.9rem;
-      color: #edbb54;
       width: 60%;
       text-wrap: balance;
     }
@@ -23,15 +22,17 @@
       button {
         font: inherit;
         cursor: pointer;
-        background-color: #edbb54;
+        background-color: #f7f4ef;
+        color: #efbb4b;
         border-radius: 4px;
         border: none;
         padding: 0.35rem 0.8rem;
         font-size: 0.9rem;
-        color: #ffffff;
+        transition: all 0.3s ease;
         &:hover,
         &:active {
-          background-color: #8f9aba;
+          background-color: #efbb4b;
+          color: #f7f4ef;
         }
       }
     }
