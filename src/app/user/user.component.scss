@@ -17,7 +17,7 @@ div {
     text-align: left;
     &:hover,
     &:active,
-    .active {
+    &.active {
       background-color: #f7f4ef;
       color: #efbb4b;
     }
