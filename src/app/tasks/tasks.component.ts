@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { type NewTaskData } from './task/task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -14,56 +15,19 @@ export class TasksComponent {
   @Input({ required: true }) name!: string;
   isAddingTask = false;
 
-  tasks = [
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Fix login bug',
-      summary:
-        'Investigate and resolve the issue with user login failing intermittently.',
-      dueDate: '2024-04-10',
-    },
-    {
-      id: 't2',
-      userId: 'u1',
-      title: 'Implement dark mode',
-      summary: 'Add a toggle for dark mode with theme persistence.',
-      dueDate: '2024-05-01',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Optimize database queries',
-      summary:
-        'Improve database performance by indexing frequently queried fields.',
-      dueDate: '2024-06-15',
-    },
-  ];
+  constructor(private tasksService: TasksService) {}
 
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.userId);
+    return this.tasksService.getUserTasks(this.userId);
   }
 
-  onCompletedTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  }
+  onCompletedTask(id: string) {}
 
   onStartAddTask() {
     this.isAddingTask = true;
   }
 
-  onCancelAddTask() {
-    this.isAddingTask = false;
-  }
-
-  onAddTask(taskData: NewTaskData) {
-    this.tasks.push({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.date,
-    });
+  onCloseAddTask() {
     this.isAddingTask = false;
   }
 }
